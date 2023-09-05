@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>CRUD</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="bg-info">
+	<nav class="navbar navbar-espand-md bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/estudantes}">Gestão de Estudantes</a>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/estudantes}">Gestão de Estudantes</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<div class="row">
+			<h1>Lista de estudantes</h1>
+		</div>
+		<div class="">
+			<a class="btn btn-primary btn-sm mb-3" th:href="@{/estudantes/add}">Novo</a>
+		</div>
+		<table class="table table-striped tsble-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">NOME</th>
+					<th scope="col">APELIDO</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">Acções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="estudante : ${estudantes}">
+					<th th:text="${estudante.id}" scope="row"></th>
+					<td th:text="${estudante.nome}"></td>
+					<td th:text="${estudante.apelido}"></td>
+					<td th:text="${estudante.email}"></td>
+					<td>
+						<a th:href="@{/estudantes/edit/{id}(id=${estudante.id})}" class="btn btn-info">Editar</a>
+						<a th:href="@{/estundantes/eliminar/{id}(id=${estudante.id})}" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
